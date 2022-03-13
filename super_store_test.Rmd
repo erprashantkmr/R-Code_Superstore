@@ -1,0 +1,52 @@
+---
+title: "Superstore_explore"
+author: "Prashant"
+date: '2022-03-13'
+output: html_document
+---
+Acme_Superstore_1
+if (!require("tidyverse")) install.packages("tidyverse")
+library(tidyverse)
+
+if (!require("magrittr")) install.packages("magrittr")
+library(magrittr)
+
+if (!require("lubridate")) install.packages("lubridate")
+library(lubridate)
+library(scales)
+AcmeSales <- Acme_Superstore_1
+
+CASalesCat <- AcmeSales %>%
+  filter(AcmeSales$State=='California') %>%
+  group_by(Category,Year=year(`Order Date`))%>%
+  summarize(
+    TotalSalesinCA = sum(Sales),
+    TotalProfitInCA = sum(Profit)
+      ) 
+
+CASalesCat
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
